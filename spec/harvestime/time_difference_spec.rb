@@ -1,0 +1,51 @@
+require 'spec_helper'
+
+describe Harvestime::TimeDifference do 
+  describe ".new" do
+    let(:start_time) { Time.at(3001).gmtime }
+    let(:end_time) { Time.at(3703).gmtime }
+    subject do
+      Harvestime::TimeDifference.new(start_time, end_time)
+    end
+    it "takes start and end times as arguments" do
+      subject.start_time.should == start_time
+      subject.end_time.should == end_time
+    end
+  end
+
+  describe ".parse" do
+    let(:start_time) { "13:40" }
+    let(:end_time) { "15:20" }
+    let(:time_range) { start_time + " - " + end_time }
+    subject do
+      Harvestime::TimeDifference.parse(time_range)
+    end
+    it "returns instance for range formatted at 'HH:MM - HH:MM'" do
+      subject.start_time.should == DateTime.parse(start_time).to_time
+      subject.end_time.should == DateTime.parse(end_time).to_time
+    end
+  end
+
+  describe "#formatted" do
+    subject { described_class.new(start_time, end_time) }
+    let(:end_time) { DateTime.parse("14:59").to_time }
+    context "when difference is less than an hour" do
+      let(:start_time) { DateTime.parse("14:16").to_time }
+      it "formats the time interval as HH:MM" do
+        subject.formatted.should == " 0:43"
+      end
+    end
+    context "when difference is less than 10 hours" do
+      let(:start_time) { DateTime.parse("12:16").to_time }
+      it "formats the time interval as HH:MM" do
+        subject.formatted.should == " 2:43"
+      end
+    end
+    context "when difference is more than 10 hours" do
+      let(:start_time) { DateTime.parse("02:16").to_time }
+      it "formats the time interval as HH:MM" do
+        subject.formatted.should == "12:43"
+      end
+    end
+  end
+end
