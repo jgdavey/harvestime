@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Harvestime::Line do 
+  describe ".new" do
+    let(:text) { "string" }
+    it "takes a line of text as an argument" do
+      Harvestime::Line.new(text).text.should == text
+    end
+  end
 
   describe "#convert" do
     subject { Harvestime::Line.new(text).convert }
