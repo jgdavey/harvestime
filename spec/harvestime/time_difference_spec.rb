@@ -28,21 +28,21 @@ describe Harvestime::TimeDifference do
 
   describe "#formatted" do
     subject { described_class.new(start_time, end_time) }
-    let(:end_time) { DateTime.parse("14:59").to_time }
+    let(:end_time) { time_at("14:59") }
     context "when difference is less than an hour" do
-      let(:start_time) { DateTime.parse("14:16").to_time }
+      let(:start_time) { time_at("14:16") }
       it "formats the time interval as HH:MM" do
         subject.formatted.should == " 0:43"
       end
     end
     context "when difference is less than 10 hours" do
-      let(:start_time) { DateTime.parse("12:16").to_time }
+      let(:start_time) { time_at("12:16") }
       it "formats the time interval as HH:MM" do
         subject.formatted.should == " 2:43"
       end
     end
     context "when difference is more than 10 hours" do
-      let(:start_time) { DateTime.parse("02:16").to_time }
+      let(:start_time) { time_at("02:16") }
       it "formats the time interval as HH:MM" do
         subject.formatted.should == "12:43"
       end
