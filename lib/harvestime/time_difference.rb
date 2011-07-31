@@ -8,7 +8,12 @@ module Harvestime
     end
 
     def self.parse(range)
-      new(*range.split(" - ", 2).map{|str| DateTime.parse(str).to_time}).formatted
+      return "" unless range
+      times = range.split(" - ", 2).map do |str|
+        hours, minutes = str.split(":").map {|s| s.to_i}
+        Time.at((hours*3600) + (minutes*60)).gmtime
+      end
+      new(*times).formatted
     end
 
     def difference

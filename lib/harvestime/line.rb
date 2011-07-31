@@ -5,10 +5,10 @@ module Harvestime
     attr_accessor :text, :description, :time_difference, :time_range
     def initialize(text)
       self.text = text
-      text.match(FORMAT) do |md|
-        self.time_range = md[1]
-        self.time_difference = md[2]
-        self.description = md[3]
+      if matchdata = text.match(FORMAT)
+        self.time_range = matchdata[1]
+        self.time_difference = matchdata[2]
+        self.description = matchdata[3]
       end
     end
 
