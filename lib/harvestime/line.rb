@@ -13,7 +13,7 @@ module Harvestime
     end
 
     def time_difference
-      @time_difference ||= TimeDifference.parse(time_range).formatted
+      @time_difference ||= TimeDifference.parse(time_range)
     end
 
     def convert

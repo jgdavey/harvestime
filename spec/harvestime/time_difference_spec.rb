@@ -17,12 +17,9 @@ describe Harvestime::TimeDifference do
     let(:start_time) { "13:40" }
     let(:end_time) { "15:20" }
     let(:time_range) { start_time + " - " + end_time }
-    subject do
-      Harvestime::TimeDifference.parse(time_range)
-    end
+    subject { Harvestime::TimeDifference.parse(time_range) }
     it "returns instance for range formatted at 'HH:MM - HH:MM'" do
-      subject.start_time.should == DateTime.parse(start_time).to_time
-      subject.end_time.should == DateTime.parse(end_time).to_time
+      subject.should == " 1:40"
     end
   end
 

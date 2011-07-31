@@ -8,7 +8,7 @@ module Harvestime
     end
 
     def self.parse(range)
-      new(*range.split(" - ", 2).map{|str| DateTime.parse(str).to_time})
+      new(*range.split(" - ", 2).map{|str| DateTime.parse(str).to_time}).formatted
     end
 
     def difference
