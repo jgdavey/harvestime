@@ -18,8 +18,8 @@ function! s:insertTimestamp()
     normal $
     return
   elseif line =~ '^\d\d:\d\d - '
-    exec "normal 08l"
-    let extra = " "
+    exec "normal 07la "
+    let extra = ""
   else
     exec "normal 0"
     let extra = " - "
