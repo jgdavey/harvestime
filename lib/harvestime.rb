@@ -1,6 +1,7 @@
 require "harvestime/version"
 require "harvestime/day"
 require "harvestime/line"
+require "harvestime/entry"
 
 module Harvestime
   FORMAT = /(\d\d:\d\d - \d\d:\d\d)(?: ([ \d]\d:\d\d)? ?(.+)?)?$/
