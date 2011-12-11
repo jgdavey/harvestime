@@ -9,7 +9,7 @@ module Harvestime
     def total
       return if lines.empty?
       minutes = total_minutes
-      "%2d:%02d" % [minutes / 60, minutes % 60]
+      "%2d:%02d" % minutes.divmod(60)
     end
 
     def total_minutes

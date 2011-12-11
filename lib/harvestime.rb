@@ -20,7 +20,8 @@ module Harvestime
 
     private
     def get_lines(string)
-      string.split("\n").map do |line|
+      string = string.split("\n") if string.respond_to? :split
+      string.map do |line|
         next unless line =~ FORMAT
         Line.new(line)
       end.compact
