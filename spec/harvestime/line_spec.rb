@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Harvestime::Line do 
+describe Harvestime::Line do
   describe ".new" do
     let(:text) { "string" }
     it "takes a line of text as an argument" do
